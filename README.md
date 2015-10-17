@@ -3,7 +3,18 @@ An implementation of cop-kmeans algorithm
 
 This is an implementations of the *Constrained K-means Algorithm*, developed by Wagstaff et al. according to the description of algorithm presented in [[1][1]]. 
 
-I implemented this algorithm since I use it in an initialization step in my work on constrained clustering [[2][2]].
+## Why did I implement it?
+
+In 2013-14, I was working on developing an integer linear programming
+formulation for an instance of the constrained clustering problem. The
+approach that I chose was *Branch-and-Price* (also referred to as
+column-generation). In the initialization step of my algorithm, I
+needed another algorithm that can produce solutions of reasonably good
+solutions very quickly. **cop-kmeans** turned out to be what I was
+looking for.
+
+Interested in knowing more about my work? Check the paper and try the
+code [[2][2]]. 
 
 # references
 
