@@ -1,9 +1,9 @@
 # copkmeans
 An implementation of cop-k-means algorithm
 
-This is an implementations of the *Constrained K-means Algorithm*,developed by Wagstaff et al. according to the description of algorithm presented in [[1]][1]
+This is an implementations of the *Constrained K-means Algorithm*,developed by Wagstaff et al. according to the description of algorithm presented in [[1]][1].
 
-I implemented this algorithm since I use it in an initialization step in my work on constrained clustering [[2]](http://dx.doi.org/10.1007/978-3-319-07046-9_31)
+I implemented this algorithm since I use it in an initialization step in my work on constrained clustering [[2]][2].
 
 # references
 
@@ -17,3 +17,4 @@ Constraint Programming (pp. 438-454). Springer International
 Publishing.
 
 [1]: https://web.cse.msu.edu/~cse802/notes/ConstrainedKmeans.pdf
+[2]: https://lirias.kuleuven.be/bitstream/123456789/437301/3/Constrained_Clustering_using_Column_Generation.pdf
