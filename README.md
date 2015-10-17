@@ -15,6 +15,11 @@ looking for.
 
 ![][me]
 
+<p>
+    <img src="./images/me.jpg" alt>
+    <em>image_caption</em>
+</p>
+
 Interested in knowing more about my work? Check the paper and try the
 code [[2][2]]. 
 
