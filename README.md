@@ -18,8 +18,8 @@ quickly. The algorithm **cop-kmeans** turned out to be exactly what I
 was looking for.
 
 Interested in knowing more about my own work? Go to my
-[homepage][page], from where you can access the paper [[2][2]] and the
-[code][code].
+[homepage][page], from where you can access my paper [[2][2]] and the
+corresponding code.
 
 # references
 
@@ -35,4 +35,3 @@ Publishing.
 [1]: https://web.cse.msu.edu/~cse802/notes/ConstrainedKmeans.pdf
 [2]: https://lirias.kuleuven.be/bitstream/123456789/437301/3/Constrained_Clustering_using_Column_Generation.pdf
 [page]: http://people.cs.kuleuven.be/~behrouz.babaki/#publications
-[code]: https://dtai.cs.kuleuven.be/CP4IM/cccg/
