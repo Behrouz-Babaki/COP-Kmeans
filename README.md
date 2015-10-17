@@ -17,4 +17,4 @@ Constraint Programming (pp. 438-454). Springer International
 Publishing.
 
 [1]: https://web.cse.msu.edu/~cse802/notes/ConstrainedKmeans.pdf
-[2]: https://lirias.kuleuven.be/bitstream/123456789/437301/3/Constrained_Clustering_using_Column_Generation.pdf
+[2]: http://people.cs.kuleuven.be/~behrouz.babaki/#publications
