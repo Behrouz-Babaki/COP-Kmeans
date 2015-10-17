@@ -13,6 +13,25 @@ needed another algorithm that can produce solutions of reasonably good
 solutions very quickly. **cop-kmeans** turned out to be what I was
 looking for.
 
+Hello there !
+
+<div id="container">
+    <img /me.jpg>
+    This is an image
+</div>
+
+Hi !
+
+#container {
+    height:100px;
+    line-height:100px;
+}
+
+#container img {
+    vertical-align:middle;
+    max-height:100%;
+}
+
 Interested in knowing more about my work? Check the paper and try the
 code [[2][2]]. 
 
