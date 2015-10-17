@@ -31,4 +31,4 @@ Publishing.
 
 [1]: https://web.cse.msu.edu/~cse802/notes/ConstrainedKmeans.pdf
 [2]: http://people.cs.kuleuven.be/~behrouz.babaki/#publications
-me: ./images/me.jpg
+[me]: ./images/me.jpg
