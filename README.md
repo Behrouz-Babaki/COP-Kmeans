@@ -8,9 +8,8 @@ presented in [[1][1]].
 
 ![](http://bhrzslm.github.io/copkmeans/images/logo.svg)
 
-<p>
-	<img src="http://bhrzslm.github.io/copkmeans/images/logo.svg" 
-	     align="middle">
+<p align="center">
+	<img src="http://bhrzslm.github.io/copkmeans/images/logo.svg">
 </p>
 
 ## Why did I implement it?
