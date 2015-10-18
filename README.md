@@ -5,8 +5,9 @@ This is an implementations of the *Constrained K-means Algorithm*,
 developed by Wagstaff et al. according to the description of algorithm
 presented in [[1][1]].
 
-![](https://github.com/bhrzslm/bhrzslm.github.io/blob/master/images/logo.svg)
-<img src="https://github.com/bhrzslm/bhrzslm.github.io/blob/master/images/logo.svg">
+
+![](http://bhrzslm.github.io/copkmeans/images/logo.svg)
+<img src="http://bhrzslm.github.io/copkmeans/images/logo.svg">
 
 ## Why did I implement it?
 
