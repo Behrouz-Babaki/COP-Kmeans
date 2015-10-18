@@ -1,0 +1,9 @@
+- Embedding an svg image in github markdown needed a trick that I
+  learned from this stackoverflow answer:
+  http://stackoverflow.com/a/16462143
+  (One should make a branch called 'gh-pages' and then links to svg
+  image via github.io)
+
+- TODO: add the algorithm to the readme page as an svg. dvisvgm seems
+  to be a nice tool to convert latex to svg
+  http://dvisvgm.bplaced.net/
