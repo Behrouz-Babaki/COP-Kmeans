@@ -5,7 +5,7 @@ This is an implementations of the *Constrained K-means Algorithm*,
 developed by Wagstaff et al. according to the description of algorithm
 presented in [[1][1]].
 
-![](./images/logo.svg)
+![](https://github.com/bhrzslm/bhrzslm.github.io/blob/master/images/logo.svg)
 
 ## Why did I implement it?
 
