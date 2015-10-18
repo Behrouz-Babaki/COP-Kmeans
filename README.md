@@ -5,6 +5,8 @@ This is an implementations of the *Constrained K-means Algorithm*,
 developed by Wagstaff et al. according to the description of algorithm
 presented in [[1][1]].
 
+![](images/logo.svg)
+
 ## Why did I implement it?
 
 In 2013-14, I was working on developing an integer linear programming
