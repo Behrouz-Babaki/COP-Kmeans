@@ -1,0 +1,31 @@
+\documentclass{article}
+
+\usepackage{parskip}
+\usepackage[a4paper, total={4in, 8in}]{geometry}
+
+\begin{document}
+\pagenumbering{gobble}
+  \textsc{cop-kmeans}(dataset $D$, must-link constraints $\mathit{Con}_{=} \subseteq D \times D$, cannot-link constraints $\mathit{Con}_{\neq} \subseteq D \times D$)
+  \begin{enumerate}
+    \item Let $C_1 \ldots C_k$ be the initial cluster centers.
+    \item For each point $d_i$ in $D$, assign it to the closest
+      cluster $C_j$ \textbf{such that}
+      \textsc{violate-constraint}($d_i, C_j, \mathit{Con}_{=},
+      \mathit{Con}_{\neq}$) \textbf{is false. If no such cluster
+        exists, fail (return \{\})}.
+    \item For each cluster $C_i$, update its center by averaging all
+      of the points $d_j$ that have been assigned to it.
+    \item Iterate between (2) and (3) until convergence.
+    \item Return $\{C_1 \ldots C_k\}$
+  \end{enumerate}
+
+
+  \vspace{10pt}
+  \textsc{violate-constraints}(data-point $d$, cluster $C$, must-link constraints $\mathit{Con}_{=} \subseteq D \times D$, cannot-link constraints $\mathit{Con}_{\neq} \subseteq D \times D$)
+  \begin{enumerate}
+    \item For each $(d,d_{=}) \in \mathit{Con}_{=}$: If $d_{=} \notin C$, return true.
+    \item For each $(d,d_{\neq}) \in \mathit{Con}_{\neq}$: If $d_{\neq} \in C$, return true.
+    \item Otherwise, return false.
+  \end{enumerate}
+
+\end{document}
