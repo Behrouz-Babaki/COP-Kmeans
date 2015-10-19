@@ -5,10 +5,8 @@ This is an implementations of the *Constrained K-means Algorithm*,
 developed by Wagstaff et al. according to the description of algorithm
 presented in [[1][1]].
 
-![](http://bhrzslm.github.io/copkmeans/images/diagram.svg)
-
 <p align="center">
-	<img src="http://bhrzslm.github.io/copkmeans/images/logo.svg"
+	<img src="http://bhrzslm.github.io/copkmeans/images/diagram.svg"
 	     width="600">
 </p>
 
