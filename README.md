@@ -12,7 +12,7 @@ The cop-kmeans algorithm
 
 <img src="http://bhrzslm.github.io/copkmeans/images/algo.svg" 
      width="550"
-     border="2">	
+     style="border:2px solid black">
 
 <p align="center">
 	<img src="http://bhrzslm.github.io/copkmeans/images/logo.svg">
