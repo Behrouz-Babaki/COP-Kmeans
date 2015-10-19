@@ -10,7 +10,7 @@ presented in [[1][1]].
 The cop-kmeans algorithm 
 ------------------------
 
-<img src="http://bhrzslm.github.io/copkmeans/images/algo.svg" width="650">	
+<img src="http://bhrzslm.github.io/copkmeans/images/algo.svg" width="550">	
 
 <p align="center">
 	<img src="http://bhrzslm.github.io/copkmeans/images/logo.svg">
