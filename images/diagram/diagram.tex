@@ -1,0 +1,46 @@
+\documentclass{article}
+
+%\usepackage[latin1]{inputenc}
+\usepackage{tikz}
+\usetikzlibrary{decorations.pathmorphing}
+\usetikzlibrary{decorations.markings}
+\usetikzlibrary{backgrounds}
+
+\begin{document}
+
+\pagenumbering{gobble}
+
+\tikzset{
+    cl/.style={decorate, decoration={zigzag}, draw=red!50},
+    ml/.style={decorate, draw=blue!50,
+        decoration={coil,amplitude=4pt, segment length=5pt}},
+    instance/.style={circle,draw=black,fill=black!20,thin,
+      inner sep=0pt,minimum size=3mm}
+}
+
+\begin{tikzpicture}[framed]
+\node (i1) at (2,0) [instance] {};
+\node (i2) at (0,1) [instance] {};
+\node (i3) at (2,2) [instance] {};
+\node (i4) at (1,3) [instance] {};
+\node (i5) at (2,4) [instance] {};
+\node (i6) at (4,2) [instance] {};
+\node (i7) at (5,3) [instance] {};
+\node (i8) at (6,4) [instance] {};
+\node (i9) at (7,2) [instance] {};
+\node (i10) at (7,3) [instance] {};
+\node (i11) at (8,3) [instance] {};
+\node (i12) at (7,5) [instance] {};
+
+
+\draw [cl] (i6) -- (i7);
+\draw [ml] (i3) -- (i6);
+\draw [ml] (i2) -- (i1);
+\draw [ml] (i4) -- (i5);
+\draw [ml] (i11) -- (i12);
+\draw [ml] (i7) -- (i8);
+
+\end{tikzpicture}
+
+\end{document}
+
