@@ -11,18 +11,14 @@ presented in [[1][1]].
 
 
 
-The cop-kmeans algorithm 
-------------------------
+##The cop-kmeans algorithm 
 This is the *cop-kmeans* algorithm, as described in [[1][1]]:
 
 <img src="http://bhrzslm.github.io/copkmeans/images/algo.svg" 
      width="550">
 
 
-![](http://bhrzslm.github.io/copkmeans/images/logo.svg)
-
 ## Why did I implement it?
-
 In 2013-14, I was working on developing an integer linear programming
 formulation for an instance of the constrained clustering problem. The
 approach that I chose was *Branch-and-Price* (also referred to as
@@ -37,8 +33,7 @@ Interested in knowing more about my own work? Go to my
 [homepage][page], from where you can access my paper [[2][2]] and the
 corresponding code.
 
-# references
-
+## references
 1. Wagstaff, K., Cardie, C., Rogers, S., & Schrödl, S. (2001,
 June). Constrained k-means clustering with background knowledge. In
 ICML (Vol. 1, pp. 577-584).
