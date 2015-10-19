@@ -5,7 +5,12 @@ This is an implementations of the *Constrained K-means Algorithm*,
 developed by Wagstaff et al. according to the description of algorithm
 presented in [[1][1]].
 
-![](http://bhrzslm.github.io/copkmeans/images/logo.svg)
+
+<p align="center">
+	<img src="http://bhrzslm.github.io/copkmeans/images/diagram.svg"
+	     width="600">
+</p>
+
 
 The cop-kmeans algorithm 
 ------------------------
@@ -15,9 +20,7 @@ This is the *cop-kmeans* algorithm, as described in [[1][1]]:
      width="550">
 
 
-<p align="center">
-	<img src="http://bhrzslm.github.io/copkmeans/images/logo.svg">
-</p>
+![](http://bhrzslm.github.io/copkmeans/images/logo.svg)
 
 ## Why did I implement it?
 
