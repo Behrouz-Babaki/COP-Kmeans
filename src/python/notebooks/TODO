@@ -1,0 +1,16 @@
+Correctness of the base k-means algorithm 
+
+1- Compare the results with explicit initialization with scikit-learn kmeans
+2- Check the scikit-learn code and improve your version, if necessary
+3- Verify the results of improved code (like in step 1)
+
+4- Extend your kmeans to cop-kmeans
+5- Verify the correctness by comparing to the two available versions
+
+6- Implement in Java
+7- Compare with a kmeans code in java (for improvements in DS, etc.)
+8- Verify the correctness by comparing to the three algorithms that you have 
+
+9- Implement in C++
+10- Compare with a kmeans code in C++ (for improvements in DS, etc.)
+11- Verify the correctness by comparing to the four algorithms that you have
