@@ -1,8 +1,8 @@
 # cop-kmeans
 
-<p align="center">
+<p align="left">
 	<img src="http://bhrzslm.github.io/copkmeans/images/diagram.svg"
-	     width="600">
+	     width="40">
 </p>
 
 This is an implementations of the *Constrained K-means Algorithm*,
@@ -18,7 +18,7 @@ This is the *cop-kmeans* algorithm, as described in [[1][1]]:
      width="550">
 
 
-## Why did I implement it?
+## Advertisement
 In 2013-14, I was working on developing an integer linear programming
 formulation for an instance of the constrained clustering problem. The
 approach that I chose was *Branch-and-Price* (also referred to as
