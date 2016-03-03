@@ -2,7 +2,7 @@
 
 <p align="left">
 	<img src="http://bhrzslm.github.io/copkmeans/images/diagram.svg"
-	     width="40">
+	     width="200">
 </p>
 
 This is an implementations of the *Constrained K-means Algorithm*,
