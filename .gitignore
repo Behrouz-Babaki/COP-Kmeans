@@ -1,1 +1,9 @@
 /**/.ipynb_checkpoints
+cpp/bin
+cpp/obj
+*~
+*.o
+.*
+*.kdev4
+
+
