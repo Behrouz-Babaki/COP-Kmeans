@@ -5,5 +5,7 @@ cpp/obj
 *.o
 .*
 *.kdev4
+__pycache__
+*.pyc
 
 
