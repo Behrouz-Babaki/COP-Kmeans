@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 import random
-import math
 
 def cop_kmeans(dataset, k, ml=[], cl=[], max_iter=1000):
 
@@ -42,11 +41,11 @@ def cop_kmeans(dataset, k, ml=[], cl=[], max_iter=1000):
 
     return clusters, centers
 
-def euclidean_distance(point1, point2):
-    return math.sqrt(sum([(float(i)-float(j))**2 for (i, j) in zip(point1, point2)]))
+def l2_distance(point1, point2):
+    return sum([(float(i)-float(j))**2 for (i, j) in zip(point1, point2)])
 
 def closest_clusters(centers, datapoint):
-    distances = [euclidean_distance(center, datapoint) for
+    distances = [l2_distance(center, datapoint) for
                  center in centers]
     return sorted(range(len(distances)), key=lambda x: distances[x])
 
