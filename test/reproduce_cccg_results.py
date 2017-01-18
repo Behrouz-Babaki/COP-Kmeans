@@ -4,7 +4,7 @@
 import sys
 import csv
 sys.path.append('../python')
-from cop_kmeans import cop_kmeans, euclidean_distance
+from cop_kmeans import cop_kmeans, l2_distance
 
 def read_data(datafile):
     data = []
@@ -38,7 +38,7 @@ def cluster_quality(cluster):
     quality = 0.0
     for i in range(len(cluster)):
         for j in range(i, len(cluster)):
-            quality += euclidean_distance(cluster[i], cluster[j])
+            quality += l2_distance(cluster[i], cluster[j])
     return quality / len(cluster)
     
 def compute_quality(data, cluster_indices):
