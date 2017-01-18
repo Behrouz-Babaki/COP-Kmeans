@@ -2,7 +2,7 @@
 import random
 import math
 
-def cop_kmeans(dataset, k, ml=[], cl=[]):
+def cop_kmeans(dataset, k, ml=[], cl=[], max_iter=1000):
 
     ml, cl = transitive_closure(ml, cl, len(dataset))
 
@@ -10,7 +10,9 @@ def cop_kmeans(dataset, k, ml=[], cl=[]):
     clusters = [-1] * len(dataset)
 
     converged = False
-    while not converged:
+    iteration = 0
+    while not converged and iteration < max_iter:
+        iteration += 1
         clusters_ = [-1] * len(dataset)
         for i, d in enumerate(dataset):
             indices = closest_clusters(centers, d)
