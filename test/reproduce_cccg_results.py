@@ -65,7 +65,7 @@ def run_iterate(datafile, consfile, k, n_runs=500):
             quality = compute_quality(data, clusters)
             if not best_quality or quality < best_quality:
                 best_quality = quality
-    return (num_sat/n_runs*100), best_quality
+    return num_sat, best_quality
 
 def run_ckm(ds_name, cons_nums):
     results = []
