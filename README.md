@@ -11,12 +11,31 @@ presented in [[1][1]].
 
 
 
-##The cop-kmeans algorithm 
+## The cop-kmeans algorithm 
 This is the *cop-kmeans* algorithm, as described in [[1][1]]:
 
 <img src="http://bhrzslm.github.io/copkmeans/images/algo.svg" 
      width="550">
 
+## Usage
+
+```
+ usage: run_ckm.py [-h] [--ofile OFILE] dfile cfile k
+
+ Run COP-Kmeans algorithm
+
+ positional arguments:
+   dfile          data file
+   cfile          constraint file
+   k              number of clusters
+
+ optional arguments:
+   -h, --help     show this help message and exit
+   --ofile OFILE  file to store the output
+
+```
+
+To see a run of the algorithm on example data and constraints, run the script `examples/runner.sh`.
 
 ## Advertisement
 In 2013-14, I was working on developing an integer linear programming

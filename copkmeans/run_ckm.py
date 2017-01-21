@@ -1,7 +1,10 @@
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 from __future__ import print_function
 import sys
 from cop_kmeans import cop_kmeans
+import argparse
+
 
 def read_data(datafile):
     data = []
@@ -29,7 +32,6 @@ def read_constraints(consfile):
     return ml, cl
 
 def run(datafile, consfile, k, outfile):
-    k = int(k)
     data = read_data(datafile)
     ml, cl = read_constraints(consfile)
     result = cop_kmeans(data, k, ml, cl)
@@ -41,10 +43,14 @@ def run(datafile, consfile, k, outfile):
     return result
 
 if __name__ == '__main__':
-    if len(sys.argv) < 5:
-        print('usage: %s [data file][constraint file][#clusters][output file]' %sys.argv[0])
-        exit(1)
-    clusters = run(*sys.argv[1:])
+    parser = argparse.ArgumentParser(description='Run COP-Kmeans algorithm')
+    parser.add_argument('dfile', help='data file')
+    parser.add_argument('cfile', help='constraint file')
+    parser.add_argument('k', type=int, help='number of clusters')
+    parser.add_argument('--ofile', help='file to store the output', default=None)
+    args = parser.parse_args()
+
+    clusters = run(args.dfile, args.cfile, args.k, args.ofile)
     if not clusters:
         print('No solution was found!')
     else:
