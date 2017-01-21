@@ -1,7 +1,10 @@
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 from __future__ import print_function
 import sys
 from cop_kmeans import cop_kmeans
+import argparse
+
 
 def read_data(datafile):
     data = []
@@ -33,20 +36,22 @@ def run(datafile, consfile, k, outfile):
     ml, cl = read_constraints(consfile)
     result = cop_kmeans(data, k, ml, cl)
     if result != None:
+        result = result[0]
         with open(outfile, 'w') as f:
-            for cluster in result[0]:
+            for cluster in result:
                 f.write('%d\n' %cluster)
     return result
 
-def run_iterate(datafile, consfile, k, outfile, limit=1000):
-    for _ in range(limit):
-        result = run(datafile, consfile, int(k), outfile)
-        if result != None:
-            print ('done!')
-            break
-
 if __name__ == '__main__':
-    if len(sys.argv) < 5:
-        print('usage: %s [data file][constraint file][#clusters][output file]' %sys.argv[0])
-        exit(1)
-    run_iterate(*sys.argv[1:])
+    parser = argparse.ArgumentParser(description='Run COP-Kmeans algorithm')
+    parser.add_argument('dfile', help='data file')
+    parser.add_argument('cfile', help='constraint file')
+    parser.add_argument('k', type=int, help='number of clusters')
+    parser.add_argument('--ofile', help='file to store the output', default=None)
+    args = parser.parse_args()
+
+    clusters = run(args.dfile, args.cfile, args.k, args.ofile)
+    if not clusters:
+        print('No solution was found!')
+    else:
+        print(' '.join(str(c) for c in clusters))
