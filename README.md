@@ -1,4 +1,4 @@
-# cop-kmeans
+# COP-Kmeans
 
 <p align="left">
 	<img src="http://bhrzslm.github.io/copkmeans/images/diagram.svg"
@@ -11,8 +11,8 @@ presented in [[1][1]].
 
 
 
-## The cop-kmeans algorithm 
-This is the *cop-kmeans* algorithm, as described in [[1][1]]:
+## The COP-Kmeans algorithm 
+This is the *COP-Kmeans* algorithm, as described in [[1][1]]:
 
 <img src="http://bhrzslm.github.io/copkmeans/images/algo.svg" 
      width="550">
@@ -37,7 +37,14 @@ This is the *cop-kmeans* algorithm, as described in [[1][1]]:
 
 To see a run of the algorithm on example data and constraints, run the script `examples/runner.sh`.
 
-## Advertisement
+## There's more ...
+
+### Other implementations
+
+[Mateusz Zawiślak](https://github.com/mateuszzawislak) has a [java implementation](https://github.com/mateuszzawislak/k-means-clustering) of the COP-Kmeans algorithm. 
+
+### Exact algorithms for constrained clustering
+
 In 2013-14, I was working on developing an integer linear programming
 formulation for an instance of the constrained clustering problem. The
 approach that I chose was *Branch-and-Price* (also referred to as
@@ -45,14 +52,14 @@ column-generation).
 
 In the initialization step of my algorithm, I needed another algorithm
 that can produce solutions of reasonably good quality very
-quickly. The algorithm **cop-kmeans** turned out to be exactly what I
+quickly. The algorithm **COP-Kmeans** turned out to be exactly what I
 was looking for.
 
 Interested in knowing more about my own work? Go to my
 [homepage][page], from where you can access my paper [[2][2]] and the
 corresponding code.
 
-## references
+## References
 1. Wagstaff, K., Cardie, C., Rogers, S., & Schrödl, S. (2001,
 June). Constrained k-means clustering with background knowledge. In
 ICML (Vol. 1, pp. 577-584).
