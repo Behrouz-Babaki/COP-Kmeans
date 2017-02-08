@@ -1,4 +1,6 @@
 # COP-Kmeans
+[![DOI](https://zenodo.org/badge/44436268.svg)](https://zenodo.org/badge/latestdoi/44436268)
+
 
 <p align="left">
 	<img src="http://behrouz-babaki.github.io/copkmeans/images/diagram.svg"
