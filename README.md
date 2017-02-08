@@ -1,7 +1,7 @@
 # COP-Kmeans
 
 <p align="left">
-	<img src="http://bhrzslm.github.io/copkmeans/images/diagram.svg"
+	<img src="http://behrouz-babaki.github.io/copkmeans/images/diagram.svg"
 	     width="200">
 </p>
 
@@ -14,7 +14,7 @@ presented in [[1][1]].
 ## The COP-Kmeans algorithm 
 This is the *COP-Kmeans* algorithm, as described in [[1][1]]:
 
-<img src="http://bhrzslm.github.io/copkmeans/images/algo.svg" 
+<img src="http://behrouz-babaki.github.io/copkmeans/images/algo.svg" 
      width="550">
 
 ## Usage
