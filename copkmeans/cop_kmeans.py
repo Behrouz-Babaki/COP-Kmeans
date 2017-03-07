@@ -95,8 +95,11 @@ def violate_constraints(data_index, cluster_index, clusters, ml, cl):
     return False
 
 def compute_centers(clusters, dataset, k, ml_info):
- 
-    k_new = len(set(clusters))
+    cluster_ids = set(clusters)
+    k_new = len(cluster_ids)
+    id_map = dict(zip(cluster_ids, range(k_new)))
+    clusters = [id_map[x] for x in clusters]    
+    
     dim = len(dataset[0])
     centers = [[0.0] * dim for i in range(k)]
 
@@ -116,13 +119,15 @@ def compute_centers(clusters, dataset, k, ml_info):
                               for i in group) 
                           for group in ml_groups]
         group_ids = sorted(range(len(ml_groups)), 
-                           key=lambda x: current_scores[x] - group_scores[x],
+                           key=lambda x: current_scores[x] - ml_scores[x],
                            reverse=True)
+        
         for j in range(k-k_new):
             gid = group_ids[j]
-            centers[j] = ml_centroids[gid]
+            cid = k_new + j
+            centers[cid] = ml_centroids[gid]
             for i in ml_groups[gid]:
-                clusters[i] = k_new + j
+                clusters[i] = cid
                 
     return clusters, centers
     
