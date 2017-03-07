@@ -4,6 +4,7 @@ import random
 def cop_kmeans(dataset, k, ml=[], cl=[], initialization='kmpp'):
 
     ml, cl = transitive_closure(ml, cl, len(dataset))
+    ml_info = get_ml_info(ml, dataset)
     centers = initialize_centers(dataset, k, initialization)
     
     clusters = [-1] * len(dataset)
@@ -27,7 +28,7 @@ def cop_kmeans(dataset, k, ml=[], cl=[], initialization='kmpp'):
 
                 if not found_cluster:
                     return None
-        clusters_, centers = compute_centers(clusters_, dataset)
+        clusters_, centers = compute_centers(clusters_, dataset, k, ml_info)
 
         converged = True
         i = 0
@@ -84,27 +85,71 @@ def violate_constraints(data_index, cluster_index, clusters, ml, cl):
 
     return False
 
-def compute_centers(clusters, dataset):
+def compute_centers(clusters, dataset, k, ml_info):
     # canonical labeling of clusters
+    # FIXME make sure that the set preserves the order
     ids = list(set(clusters))
     c_to_id = dict()
     for j, c in enumerate(ids):
         c_to_id[c] = j
     for j, c in enumerate(clusters):
         clusters[j] = c_to_id[c]
-
-    k = len(ids)
+ 
+    k_new = len(ids)
     dim = len(dataset[0])
     centers = [[0.0] * dim for i in range(k)]
-    counts = [0] * k
+
+    counts = [0] * k_new
     for j, c in enumerate(clusters):
         for i in range(dim):
             centers[c][i] += dataset[j][i]
         counts[c] += 1
-    for j in range(k):
+        
+    for j in range(k_new):
         for i in range(dim):
             centers[j][i] = centers[j][i]/float(counts[j])
+
+    if k_new < k:
+        ml_groups, ml_scores, ml_centroids = ml_info
+        current_scores = [sum(l2_distance(centers[clusters[i]], dataset[i]) 
+                              for i in group) 
+                          for group in ml_groups]
+        group_ids = sorted(range(len(ml_groups)), 
+                           key=lambda x: current_scores[x] - group_scores[x],
+                           reverse=True)
+        for j in range(k-k_new):
+            gid = group_ids[j]
+            centers[j] = ml_centroids[gid]
+            for i in ml_groups[gid]:
+                clusters[i] = k_new + j
+                
     return clusters, centers
+    
+def get_ml_info(ml, dataset):
+    flags = [True] * len(dataset)
+    groups = []
+    for i in range(len(dataset)):
+        if not flags[i]: continue
+        group = list(ml[i] | {i})
+        groups.append(group)
+        for j in group:
+            flags[j] = False
+    
+    dim = len(dataset[0])
+    scores = [0.0] * len(groups)
+    centroids = [[0.0] * dim for i in range(len(groups))]
+    
+    for j, group in enumerate(groups):
+        for d in range(dim):
+            for i in group:
+                centroids[j][d] += dataset[i][d]
+            centroids[j][d] /= float(len(group))
+
+    scores = [sum(l2_distance(centroids[j], dataset[i])
+                  for i in groups[j]) 
+              for j in range(len(groups))]
+    
+    return groups, scores, centroids
 
 def transitive_closure(ml, cl, n):
     ml_graph = dict()
