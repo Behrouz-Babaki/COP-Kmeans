@@ -35,7 +35,7 @@ def run(datafile, consfile, k, outfile):
     data = read_data(datafile)
     ml, cl = read_constraints(consfile)
     result = cop_kmeans(data, k, ml, cl)
-    if result != None:
+    if outfile is not None and result is not None:
         result = result[0]
         with open(outfile, 'w') as f:
             for cluster in result:
