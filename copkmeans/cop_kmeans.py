@@ -1,18 +1,18 @@
 # -*- coding: utf-8 -*-
 import random
 
-def cop_kmeans(dataset, k, ml=[], cl=[]):
+def cop_kmeans(dataset, k, ml=[], cl=[], initialization='kmpp'):
 
     ml, cl = transitive_closure(ml, cl, len(dataset))
-
-    centers = initialize_centers(dataset, k)
+    centers = initialize_centers(dataset, k, initialization)
+    
     clusters = [-1] * len(dataset)
 
     converged = False
     while not converged:
         clusters_ = [-1] * len(dataset)
         for i, d in enumerate(dataset):
-            indices = closest_clusters(centers, d)
+            indices, _ = closest_clusters(centers, d)
             counter = 0
             if clusters_[i] == -1:
                 found_cluster = False
@@ -45,13 +45,33 @@ def l2_distance(point1, point2):
 def closest_clusters(centers, datapoint):
     distances = [l2_distance(center, datapoint) for
                  center in centers]
-    return sorted(range(len(distances)), key=lambda x: distances[x])
+    return sorted(range(len(distances)), key=lambda x: distances[x]), distances
 
-# under-specified in the paper
-def initialize_centers(dataset, k):
-    ids = list(range(len(dataset)))
-    random.shuffle(ids)
-    return [dataset[i] for i in ids[:k]]
+def initialize_centers(dataset, k, method):
+    if method == 'random':
+        ids = list(range(len(dataset)))
+        random.shuffle(ids)
+        return [dataset[i] for i in ids[:k]]        
+    
+    elif method == 'kmpp':
+        chances = [1] * len(dataset)
+        centers = []
+        
+        for _ in range(k):
+            chances = [x/sum(chances) for x in chances]        
+            r = random.random()
+            acc = 0.0
+            for index, chance in enumerate(chances):
+                if acc + chance >= r:
+                    break
+                acc += chance
+            centers.append(dataset[index])
+            
+            for index, point in enumerate(dataset):
+                cids, distances = closest_clusters(centers, point)
+                chances[index] = distances[cids[0]]
+                
+        return centers
 
 def violate_constraints(data_index, cluster_index, clusters, ml, cl):
     for i in ml[data_index]:
