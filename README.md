@@ -22,22 +22,24 @@ This is the *COP-Kmeans* algorithm, as described in [[1][1]]:
 ## Usage
 
 ```
- usage: run_ckm.py [-h] [--ofile OFILE] dfile cfile k
+usage: run_ckm.py [-h] [--ofile OFILE] [--n_rep N_REP] [--m_iter M_ITER] [--tol TOL] dfile cfile k
 
- Run COP-Kmeans algorithm
+Run COP-Kmeans algorithm
 
- positional arguments:
-   dfile          data file
-   cfile          constraint file
-   k              number of clusters
+positional arguments:
+  dfile            data file
+  cfile            constraint file
+  k                number of clusters
 
- optional arguments:
-   -h, --help     show this help message and exit
-   --ofile OFILE  file to store the output
-
+optional arguments:
+  -h, --help       show this help message and exit
+  --ofile OFILE    file to store the output
+  --n_rep N_REP    number of times to repeat the algorithm
+  --m_iter M_ITER  maximum number of iterations of the main loop
+  --tol TOL        tolerance for deciding on convergence
 ```
 
-To see a run of the algorithm on example data and constraints, run the script `examples/runner.sh`.
+To see a run of the algorithm on example data and constraints, run the script `runner.sh` in the `examples` directory.
 
 ## There's more ...
 
