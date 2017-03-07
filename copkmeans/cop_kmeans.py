@@ -1,16 +1,18 @@
 # -*- coding: utf-8 -*-
 import random
 
-def cop_kmeans(dataset, k, ml=[], cl=[], initialization='kmpp'):
-
+def cop_kmeans(dataset, k, ml=[], cl=[], 
+               initialization='kmpp', 
+               max_iter=300, tol=1e-4):
+                   
     ml, cl = transitive_closure(ml, cl, len(dataset))
     ml_info = get_ml_info(ml, dataset)
-    centers = initialize_centers(dataset, k, initialization)
+    tol = tolerance(tol, dataset)
     
+    centers = initialize_centers(dataset, k, initialization)
     clusters = [-1] * len(dataset)
 
-    converged = False
-    while not converged:
+    for i in range(max_iter):
         clusters_ = [-1] * len(dataset)
         for i, d in enumerate(dataset):
             indices, _ = closest_clusters(centers, d)
@@ -28,20 +30,27 @@ def cop_kmeans(dataset, k, ml=[], cl=[], initialization='kmpp'):
 
                 if not found_cluster:
                     return None
-        clusters_, centers = compute_centers(clusters_, dataset, k, ml_info)
-
-        converged = True
-        i = 0
-        while converged and i < len(dataset):
-            if clusters[i] != clusters_[i]:
-                converged = False
-            i += 1
+        
+        clusters_, centers_ = compute_centers(clusters_, dataset, k, ml_info)
+        shift = sum(l2_distance(centers[i], centers_[i]) for i in range(k))
+        if shift <= tol:
+            break
+        
         clusters = clusters_
+        centers = centers_
 
-    return clusters, centers
+    return clusters_, centers_
 
 def l2_distance(point1, point2):
     return sum([(float(i)-float(j))**2 for (i, j) in zip(point1, point2)])
+
+# taken from scikit-learn (https://goo.gl/1RYPP5)
+def tolerance(tol, dataset):
+    n = len(dataset)
+    dim = len(dataset[0])
+    averages = [sum(dataset[i][d] for i in range(n))/float(n) for d in range(dim)]
+    variances = [sum((dataset[i][d]-averages[d])**2 for i in range(n))/float(n) for d in range(dim)]
+    return tol * sum(variances) / dim
 
 def closest_clusters(centers, datapoint):
     distances = [l2_distance(center, datapoint) for
@@ -86,16 +95,8 @@ def violate_constraints(data_index, cluster_index, clusters, ml, cl):
     return False
 
 def compute_centers(clusters, dataset, k, ml_info):
-    # canonical labeling of clusters
-    # FIXME make sure that the set preserves the order
-    ids = list(set(clusters))
-    c_to_id = dict()
-    for j, c in enumerate(ids):
-        c_to_id[c] = j
-    for j, c in enumerate(clusters):
-        clusters[j] = c_to_id[c]
  
-    k_new = len(ids)
+    k_new = len(set(clusters))
     dim = len(dataset[0])
     centers = [[0.0] * dim for i in range(k)]
 
