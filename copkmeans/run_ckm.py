@@ -55,9 +55,12 @@ if __name__ == '__main__':
     parser.add_argument('cfile', help='constraint file')
     parser.add_argument('k', type=int, help='number of clusters')
     parser.add_argument('--ofile', help='file to store the output', default=None)
-    parser.add_argument('--n_rep', help='number of times to repeat the algorithm', default=10)
-    parser.add_argument('--m_iter', help='maximum number of iterations of the main loop', default=300)
-    parser.add_argument('--tol', help='tolerance for deciding on convergence', default=1e-4)
+    parser.add_argument('--n_rep', help='number of times to repeat the algorithm', 
+                        default=10, type=int)
+    parser.add_argument('--m_iter', help='maximum number of iterations of the main loop', 
+                        default=300, type=int)
+    parser.add_argument('--tol', help='tolerance for deciding on convergence', 
+                        default=1e-4, type=float)
     args = parser.parse_args()
 
     clusters = run(args.dfile, args.cfile, args.k, 
