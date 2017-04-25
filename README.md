@@ -1,5 +1,5 @@
 # COP-Kmeans
-[![DOI](https://zenodo.org/badge/44436268.svg)](https://zenodo.org/badge/latestdoi/44436268)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.275118.svg)](https://doi.org/10.5281/zenodo.275118)
 
 
 <p align="left">
@@ -40,6 +40,20 @@ optional arguments:
 ```
 
 To see a run of the algorithm on example data and constraints, run the script `runner.sh` in the `examples` directory.
+
+## Citing
+If you want to cite this implementation, you can use the following bibtex entry (other formats are also [available](https://doi.org/10.5281/zenodo.275118)):
+
+```
+@misc{behrouz_babaki_2017_275118,
+  author       = {Behrouz Babaki},
+  title        = {COP-Kmeans v1.0},
+  month        = feb,
+  year         = 2017,
+  doi          = {10.5281/zenodo.275118},
+  url          = {https://doi.org/10.5281/zenodo.275118}
+}
+```
 
 ## There's more ...
 
