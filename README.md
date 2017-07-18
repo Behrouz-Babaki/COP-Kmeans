@@ -45,13 +45,13 @@ To see a run of the algorithm on example data and constraints, run the script `r
 If you want to cite this implementation, you can use the following bibtex entry (other formats are also [available](https://doi.org/10.5281/zenodo.275118)):
 
 ```
-@misc{behrouz_babaki_2017_275118,
+@misc{behrouz_babaki_2017_831850,
   author       = {Behrouz Babaki},
-  title        = {COP-Kmeans v1.0},
-  month        = feb,
+  title        = {COP-Kmeans version 1.5},
+  month        = jul,
   year         = 2017,
-  doi          = {10.5281/zenodo.275118},
-  url          = {https://doi.org/10.5281/zenodo.275118}
+  doi          = {10.5281/zenodo.831850},
+  url          = {https://doi.org/10.5281/zenodo.831850}
 }
 ```
 
