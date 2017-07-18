@@ -1,5 +1,5 @@
 # COP-Kmeans
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.275118.svg)](https://doi.org/10.5281/zenodo.275118)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.831850.svg)](https://doi.org/10.5281/zenodo.831850)
 
 
 <p align="left">
