@@ -7,9 +7,9 @@
 	     width="200">
 </p>
 
-This is an implementations of the *Constrained K-means Algorithm*,
-developed by Wagstaff et al. according to the description of algorithm
-presented in [[1][1]].
+This is an implementations of the *Constrained K-means* algorithm,
+introduced by Wagstaff et al. This implementation is developed according 
+to the description of algorithm as presented in [[1][1]].
 
 
 
