@@ -95,7 +95,9 @@ function transitive_closure(ml::Array{Tuple{Int, Int}, 1},
     return ml_graph, cl_graph
 end
 
-function get_ml_info(ml::Dict{Int, Set{Int}}, dataset::Array{Float64,2})
+function get_ml_info(ml::Dict{Int, Set{Int}}, 
+        dataset::Array{Float64,2})
+    
     n, dim = size(dataset)
     flags = fill(true, n)
     groups = Array{Array{Int,1},1}()
@@ -119,24 +121,18 @@ function get_ml_info(ml::Dict{Int, Set{Int}}, dataset::Array{Float64,2})
             centroids[j,:] += dataset[i,:]
         end
         centroids[j,:] /= length(group)
-        end
     end
-    
-    #DEBUG
-    for j in groups
-        for i in groups[j]
-            println(size(centroids), i, j)
-        end
-    end
-    
-    scores = [sum(l2_distance(centroids[i,:], centroids[j,:]) for i in groups[j]) for j in 1:n_groups]
+        
+    scores = [sum(l2_distance(centroids[j,:], dataset[i,:]) 
+            for i in groups[j]) for j in 1:n_groups]
     return groups, scores, centroids
 end
 
-function closest_clusters(centers::Array{Array{Float64,1},1}, 
+function closest_clusters(centers::Array{Float64,2}, 
         datapoint::Array{Float64,1})
-    distances = [l2_distance(center, datapoint) for center in centers]
-    return sortperm(distances)
+    distances = [l2_distance(centers[i,:], datapoint) 
+        for i in 1:size(centers)[1]]
+    return sortperm(distances), distances
 end
 
 #  from scikit-learn (https://goo.gl/1RYPP5)
@@ -148,8 +144,11 @@ function tolerance(tol::Float64, dataset::Array{Float64, 2})
     
 end
 
-function violate_constraints(data_index, cluster_index, 
-        clusters, ml, cl)
+function violate_constraints(data_index::Int, 
+        cluster_index::Int, 
+        clusters::Array{Int, 1}, 
+        ml::Dict{Int, Set{Int}}, 
+        cl::Dict{Int, Set{Int}})
     for i in ml[data_index]
         if clusters[i] != -1 &&  clusters[i] != cluster_index
             return true
@@ -211,28 +210,32 @@ end
 
 function initialize_centers(dataset::Array{Float64,2}, 
         k::Int, method::String)
-    n = size(dataset)[1]
+    n, dim = size(dataset)
     if method == "random"
         ids = randperm(n)
         return dataset[ids[1:k],:]
-    elseif method = "kmpp"
+        
+    elseif method == "kmpp"
         chances = fill(1.0, n)
-        centers = Array{Array{Float64,1},1}()
-        for _ in 1:k
+        centers = Array{Float64,2}(k, dim)
+        
+        for i in 1:k
             chances /= sum(chances)
             r = rand()
             acc = 0.0
+            
             for (index, chance) in enumerate(chances)
                 if acc + chance >= r
+                    centers[i,:] = dataset[index,:]
                     break
                 end
                 acc += chance
             end
-            push!(centers, dataset[index,:])
             for index in 1:n
                 point = dataset[index,:]
-                cids, distances = closest_clusterst(centers, point)
+                cids, distances = closest_clusters(centers, point)
                 chances[index] = distances[cids[1]]
+            end
         end
         return centers
     end
@@ -250,32 +253,32 @@ function cop_kmeans(dataset::Array{Float64,2}, k::Int,
     tol = tolerance(tol, dataset)
     
     centers = initialize_centers(dataset, k, initialization)
-    for _ in 1:max_iter
+    for cnt in 1:max_iter
         clusters_ = fill(-1, n)
         for i in 1:n
             d = dataset[i,:]
             indices, _  = closest_clusters(centers, d)
-            counter = 0
+            counter = 1
             if clusters_[i] == -1
                 found_cluster = false
-                while (!found_cluster) && counter < len(indices)
+                while (!found_cluster) && counter < length(indices)
                     index = indices[counter]
-                    if !violate_constraint(i, index, clusters_, ml, cl)
+                    if !violate_constraints(i, index, clusters_, ml, cl)
                         found_cluster = true
                         clusters_[i] = index
                         for j in ml[i]
                             clusters_[j] = index
                         end
-                    counter += 1
                     end
+                    counter += 1
                 end
                 if !found_cluster
-                    return nothing
+                    return nothing, nothing
                 end
             end
         end
         clusters_, centers_ = compute_centers(clusters_, dataset, k, ml_info)
-        shift = sum(l2_distance(centers[i,:], centers_[i]) for i in 1:k)
+        shift = sum(l2_distance(centers[i,:], centers_[i,:]) for i in 1:k)
         if shift <= tol
             break
         end
@@ -288,4 +291,6 @@ data = read_data("examples/iris.data")
 ml, cl = read_constraints("examples/iris.constraints")
 ;
 
-cop_kmeans(data, 2, ml, cl)
+clusters, centers = cop_kmeans(data, 2, ml, cl)
+println(typeof(clusters))
+println(typeof(centers))
