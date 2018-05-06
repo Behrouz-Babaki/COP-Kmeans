@@ -10,9 +10,8 @@ def cop_kmeans(dataset, k, ml=[], cl=[],
     tol = tolerance(tol, dataset)
     
     centers = initialize_centers(dataset, k, initialization)
-    clusters = [-1] * len(dataset)
 
-    for i in range(max_iter):
+    for _ in range(max_iter):
         clusters_ = [-1] * len(dataset)
         for i, d in enumerate(dataset):
             indices, _ = closest_clusters(centers, d)
@@ -36,7 +35,6 @@ def cop_kmeans(dataset, k, ml=[], cl=[],
         if shift <= tol:
             break
         
-        clusters = clusters_
         centers = centers_
 
     return clusters_, centers_
