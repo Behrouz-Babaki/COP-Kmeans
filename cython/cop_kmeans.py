@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import random
+from _cop_kmeans import l2_distance, closest_clusters
 
 def cop_kmeans(dataset, k, ml=[], cl=[], 
                initialization='kmpp', 
@@ -39,9 +40,6 @@ def cop_kmeans(dataset, k, ml=[], cl=[],
 
     return clusters_, centers_
 
-def l2_distance(point1, point2):
-    return sum([(float(i)-float(j))**2 for (i, j) in zip(point1, point2)])
-
 # taken from scikit-learn (https://goo.gl/1RYPP5)
 def tolerance(tol, dataset):
     n = len(dataset)
@@ -50,10 +48,6 @@ def tolerance(tol, dataset):
     variances = [sum((dataset[i][d]-averages[d])**2 for i in range(n))/float(n) for d in range(dim)]
     return tol * sum(variances) / dim
 
-def closest_clusters(centers, datapoint):
-    distances = [l2_distance(center, datapoint) for
-                 center in centers]
-    return sorted(range(len(distances)), key=lambda x: distances[x]), distances
 
 def initialize_centers(dataset, k, method):
     if method == 'random':

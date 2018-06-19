@@ -1,9 +1,9 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 from __future__ import print_function
-import sys
-from cop_kmeans import cop_kmeans
+from cop_kmeans import cop_kmeans, l2_distance
 import argparse
+import time
 
 
 def read_data(datafile):
@@ -31,16 +31,25 @@ def read_constraints(consfile):
                     cl.append(constraint)
     return ml, cl
 
-def run(datafile, consfile, k, outfile):
+def run(datafile, consfile, k, n_rep, max_iter, tolerance):
     data = read_data(datafile)
     ml, cl = read_constraints(consfile)
-    result = cop_kmeans(data, k, ml, cl)
-    if result != None:
-        result = result[0]
-        with open(outfile, 'w') as f:
-            for cluster in result:
-                f.write('%d\n' %cluster)
-    return result
+    
+    best_clusters = None
+    best_score = None
+
+    for i in range(n_rep):
+        clusters, centers = cop_kmeans(data, k, ml, cl, 
+                                       max_iter=max_iter,
+                                       tol=tolerance)
+        if clusters is not None and centers is not None:
+            score = sum(l2_distance(data[j], centers[clusters[j]]) 
+                        for j in range(len(data)))
+            if best_score is None or score < best_score:
+                best_score = score
+                best_clusters = clusters
+            
+    return best_clusters
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Run COP-Kmeans algorithm')
@@ -48,9 +57,24 @@ if __name__ == '__main__':
     parser.add_argument('cfile', help='constraint file')
     parser.add_argument('k', type=int, help='number of clusters')
     parser.add_argument('--ofile', help='file to store the output', default=None)
+    parser.add_argument('--n_rep', help='number of times to repeat the algorithm', 
+                        default=10, type=int)
+    parser.add_argument('--m_iter', help='maximum number of iterations of the main loop', 
+                        default=300, type=int)
+    parser.add_argument('--tol', help='tolerance for deciding on convergence', 
+                        default=1e-4, type=float)
     args = parser.parse_args()
 
-    clusters = run(args.dfile, args.cfile, args.k, args.ofile)
+    start_time = time.time()
+    clusters = run(args.dfile, args.cfile, args.k, 
+                            args.n_rep, args.m_iter, args.tol)
+    print('runtime: %g'%(time.time() - start_time))
+
+    if args.ofile is not None and clusters is not None:
+        with open(args.ofile, 'w') as f:
+            for cluster in clusters:
+                f.write('%d\n' %cluster)    
+
     if not clusters:
         print('No solution was found!')
     else:
