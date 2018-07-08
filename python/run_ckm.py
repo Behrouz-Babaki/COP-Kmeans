@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 from __future__ import print_function
-from cop_kmeans import cop_kmeans, l2_distance
+from cop_kmeans import cop_kmeans, l2_distance, transitive_closure, get_ml_info
 import argparse
 import time
 
@@ -34,12 +34,16 @@ def read_constraints(consfile):
 def run(datafile, consfile, k, n_rep, max_iter, tolerance):
     data = read_data(datafile)
     ml, cl = read_constraints(consfile)
+    ml, cl = transitive_closure(ml, cl, len(data))
+    ml_info = get_ml_info(ml, data)
+
     
     best_clusters = None
     best_score = None
 
-    for i in range(n_rep):
-        clusters, centers = cop_kmeans(data, k, ml, cl, 
+    for _ in range(n_rep):
+        clusters, centers = cop_kmeans(data, k, 
+                                       ml, cl, ml_info, 
                                        max_iter=max_iter,
                                        tol=tolerance)
         if clusters is not None and centers is not None:
