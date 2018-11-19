@@ -1,9 +1,21 @@
 # -*- coding: utf-8 -*-
 import random
 
+
 def cop_kmeans(dataset, k, ml=[], cl=[],
                initialization='kmpp',
                max_iter=300, tol=1e-4):
+    """
+
+    :param dataset: 2 dimension list or numpy 2d-array.
+    :param k: the number of cluster.
+    :param ml: constraints of "join". List of tuple which has 2 data number.
+    :param cl: constraints of "non-join". List of tuple which has 2 data number.
+    :param initialization:
+    :param max_iter:
+    :param tol:
+    :return: Tuple of clustering result.
+    """
 
     ml, cl = transitive_closure(ml, cl, len(dataset))
     ml_info = get_ml_info(ml, dataset)

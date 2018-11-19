@@ -1,0 +1,11 @@
+version: '3'
+services:
+  dev_env:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    volumes:
+      - ..:/codes/
+    working_dir: /codes
+    stdin_open: true
+    tty: true
