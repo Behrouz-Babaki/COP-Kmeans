@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 
 setup(
-    name='COP-Kmeans',
+    name='copkmeans',
     version='1.5',
     description='',
     author='',
