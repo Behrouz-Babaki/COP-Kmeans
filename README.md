@@ -46,7 +46,7 @@ To see a run of the algorithm on example data and constraints, run the script `r
 Run this command to install this package.
 
 ```
-% python setup.pu install
+% python setup.py install
 ```
 
 Here is simple example to call this module
