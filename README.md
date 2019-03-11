@@ -99,7 +99,7 @@ was looking for. Interested in knowing more about my own work? Go to my
 [homepage][page], from where you can access my paper [[3][3]] and the
 corresponding code.
 
-There is also a [body of work](http://cp4clustering.com/) on using constraint programming for exact constrained clustering. In particular, [[4][4]] is the state-of-the art in exact constrained clustering.
+There is also a [body of work](https://cp4clustering.github.io/) on using constraint programming for exact constrained clustering. In particular, [[4][4]] is the state-of-the art in exact constrained clustering.
 
 ## References
 1. Wagstaff, K., Cardie, C., Rogers, S., & Schrödl, S. (2001,
@@ -118,5 +118,5 @@ Publishing.
 [1]: https://web.cse.msu.edu/~cse802/notes/ConstrainedKmeans.pdf
 [2]: https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/tr-2000-65.pdf
 [3]: https://lirias.kuleuven.be/bitstream/123456789/437301/3/Constrained_Clustering_using_Column_Generation.pdf
-[4]: http://cp4clustering.com/ECAI16-CPRBBA.pdf
-[page]: http://people.cs.kuleuven.be/~behrouz.babaki/#publications
+[4]: https://cp4clustering.github.io/ECAI16-CPRBBA.pdf
+[page]: https://behrouz-babaki.github.io/#publications
